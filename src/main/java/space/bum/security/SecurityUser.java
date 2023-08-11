@@ -12,6 +12,7 @@ import space.bum.entities.User;
 @AllArgsConstructor
 public class SecurityUser implements UserDetails {
 
+	private static final long serialVersionUID = 1L;
 	private final User user;
 	
 	@Override
