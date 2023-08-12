@@ -1,9 +1,15 @@
 package space.bum.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -20,6 +26,12 @@ public class User {
 	private int id;
 
 	private String username;
-	
+
 	private String password;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_authorities", 
+		joinColumns = @JoinColumn(name = "userId"),
+		inverseJoinColumns = @JoinColumn(name = "authorityId"))
+	private Set<Authority> authorities;
 }
